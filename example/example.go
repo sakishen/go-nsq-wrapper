@@ -2,12 +2,12 @@ package main
 
 import (
 	"os"
-
+    "fmt"
 	"errors"
 	"github.com/nsqio/go-nsq"
 	"github.com/scofieldpeng/gonsq"
 	"github.com/vaughan0/go-ini"
-	"go.zhuzi.me/log"
+	//"go.zhuzi.me/log"
 )
 
 var (
@@ -28,16 +28,18 @@ func main() {
 	consumerConfig["concurrent"] = "3"
 	consumerConfig["channelName"] = "chan1"
 	consumerConfig["max_attempt"] = "2"
-	log.SetDebug(debug)
+	//log.SetDebug(debug)
 
 	if err := gonsq.InitAll(producerConfig, consumerConfig, true); err != nil {
-		log.Panic(err)
+		//log.Panic(err)
+        panic(err)
 	}
 	gonsq.Consumer.AddFailHandler("test", testFailHandler())
 	gonsq.Consumer.AddHandler("test", testHandler())
 
 	if err := gonsq.RunAll(); err != nil {
-		log.Panic(err)
+		//log.Panic(err)
+        panic(err)
 	}
 	defer gonsq.StopAll()
 
@@ -48,10 +50,12 @@ func main() {
 				break
 			}
 			if err := gonsq.Producer.Publish("test", "hello world"); err != nil {
-				log.Error("produce error:", err.Error())
+				//log.Error("produce error:", err.Error())
+                fmt.Println("produce error:", err.Error())
 				continue
 			}
-			log.Info("producer success!")
+			//log.Info("producer success!")
+			fmt.Println("producer success!")
 			i++
 		}
 	}()

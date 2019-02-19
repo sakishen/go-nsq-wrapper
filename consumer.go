@@ -1,6 +1,7 @@
 package gonsq
 
 import (
+    "fmt"
 	"errors"
 	"time"
 
@@ -10,7 +11,7 @@ import (
 
 	"github.com/nsqio/go-nsq"
 	"github.com/vaughan0/go-ini"
-	"go.zhuzi.me/log"
+	//"go.zhuzi.me/log"
 )
 
 // 使用者可以使用快速的配置进行事件的消费
@@ -80,7 +81,8 @@ type FailMessage struct {
 // Connect 连接
 func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAddr []string, debug bool) {
 	if len(nsqdAddr) == 0 && len(nsqlookupdAddr) == 0 {
-		log.Warning("nsqd和nsqlookupd地址皆为空，跳过连接,topic:", t.topic)
+		//log.Warning("nsqd和nsqlookupd地址皆为空，跳过连接,topic:", t.topic)
+		fmt.Println("nsqd和nsqlookupd地址皆为空，跳过连接,topic:", t.topic)
 		return
 	}
 	var (
@@ -90,7 +92,8 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 	)
 	t.consumer, err = nsq.NewConsumer(t.topic, channelName, t.config)
 	if err != nil {
-		log.Errorf("新建nsq consumer失败，err:%s,topic:%s,channel:%s", err.Error(), t.topic, channelName)
+		//log.Errorf("新建nsq consumer失败，err:%s,topic:%s,channel:%s", err.Error(), t.topic, channelName)
+		fmt.Printf("新建nsq consumer失败，err:%s,topic:%s,channel:%s", err.Error(), t.topic, channelName)
 		return
 	}
 	t.consumer.ChangeMaxInFlight(t.maxInFlight)
@@ -111,7 +114,8 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 			}
 		}
 		if err != nil {
-			log.Warningf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s", nsqlookupdAddr, nsqdAddr, err.Error())
+			//log.Warningf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s", nsqlookupdAddr, nsqdAddr, err.Error())
+			fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s", nsqlookupdAddr, nsqdAddr, err.Error())
 			retryNum++
 			sleepSeconds = 5
 			if retryNum%6 == 0 {
@@ -120,12 +124,15 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 			time.Sleep(time.Duration(sleepSeconds) * time.Second)
 			continue
 		}
+        /*
 		if debug {
 			t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelDebug)
 		} else {
 			t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
 		}
-		log.Infof("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
+        */
+		//log.Infof("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
+		fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
 		break
 	}
 

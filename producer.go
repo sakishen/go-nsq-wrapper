@@ -1,6 +1,7 @@
 package gonsq
 
 import (
+    "fmt"
 	"errors"
 
 	"strconv"
@@ -8,7 +9,7 @@ import (
 	"github.com/nsqio/go-nsq"
 	"github.com/pquerna/ffjson/ffjson"
 	"github.com/vaughan0/go-ini"
-	"go.zhuzi.me/log"
+	//"go.zhuzi.me/log"
 	"time"
 )
 
@@ -51,11 +52,13 @@ func (p *producer) Run() (err error) {
 	if p.producer, err = nsq.NewProducer(p.nsqdAddr, p.config); err != nil {
 		err = errors.New("初始化 nsq producer 失败, err:" + err.Error())
 	}
-	if p.Debug {
+	/*
+    if p.Debug {
 		p.producer.SetLogger(log.GetLogger(), nsq.LogLevelDebug)
 	} else {
 		p.producer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
 	}
+    */
 	return
 }
 
