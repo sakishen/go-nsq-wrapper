@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # gonsq
 
 一个简单的基于官方 nsq 的 go client 的封装
@@ -126,3 +127,7 @@ if err := gonsq.Consumer.Run();err != nil {
 defer gonsq.Consumer.Stop()
 
 ```
+=======
+# go-nsq-wrapper
+go-nsq-wrapper
+>>>>>>> 174a107b1c7f7e208b5e46f324315a16728a9a67

@@ -1,5 +1,9 @@
 # Binaries for programs and plugins
 *.exe
+<<<<<<< HEAD
+=======
+*.exe~
+>>>>>>> 174a107b1c7f7e208b5e46f324315a16728a9a67
 *.dll
 *.so
 *.dylib
@@ -9,7 +13,10 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+<<<<<<< HEAD
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
 .idea/
+=======
+>>>>>>> 174a107b1c7f7e208b5e46f324315a16728a9a67
