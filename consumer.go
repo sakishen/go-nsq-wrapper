@@ -93,7 +93,7 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 	t.consumer, err = nsq.NewConsumer(t.topic, channelName, t.config)
 	if err != nil {
 		//log.Errorf("新建nsq consumer失败，err:%s,topic:%s,channel:%s", err.Error(), t.topic, channelName)
-		fmt.Printf("新建nsq consumer失败，err:%s,topic:%s,channel:%s", err.Error(), t.topic, channelName)
+		fmt.Printf("新建nsq consumer失败，err:%s,topic:%s,channel:%s\n", err.Error(), t.topic, channelName)
 		return
 	}
 	t.consumer.ChangeMaxInFlight(t.maxInFlight)
@@ -115,7 +115,7 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 		}
 		if err != nil {
 			//log.Warningf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s", nsqlookupdAddr, nsqdAddr, err.Error())
-			fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s", nsqlookupdAddr, nsqdAddr, err.Error())
+			fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(addr:%v)失败,err:%s\n", nsqlookupdAddr, nsqdAddr, err.Error())
 			retryNum++
 			sleepSeconds = 5
 			if retryNum%6 == 0 {
@@ -132,7 +132,7 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 		}
         */
 		//log.Infof("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
-		fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
+		fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(%v)成功\n", nsqlookupdAddr, nsqdAddr)
 		break
 	}
 

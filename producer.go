@@ -1,7 +1,7 @@
 package gonsq
 
 import (
-    "fmt"
+    _ "fmt"
 	"errors"
 
 	"strconv"
