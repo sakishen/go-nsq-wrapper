@@ -131,6 +131,7 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 			t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
 		}
         */
+        t.consumer.SetLogger(nil, 0)    //屏蔽系统日志
 		//log.Infof("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
 		fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(%v)成功\n", nsqlookupdAddr, nsqdAddr)
 		break

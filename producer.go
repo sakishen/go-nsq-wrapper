@@ -59,6 +59,7 @@ func (p *producer) Run() (err error) {
 		p.producer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
 	}
     */
+    p.producer.SetLogger(nil, 0)    //屏蔽系统日志
 	return
 }
 
