@@ -5,7 +5,7 @@
 一. 安装
 
 ```go
-go get github.com/scofieldpeng/gonsq
+go get github.com/sakishen/go-nsq-wrapper
 ```
 
 二. 配置
