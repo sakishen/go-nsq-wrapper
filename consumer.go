@@ -1,8 +1,8 @@
 package gonsq
 
 import (
-    "fmt"
 	"errors"
+	"fmt"
 	"time"
 
 	"strings"
@@ -124,14 +124,14 @@ func (t *topicInfo) Connect(channelName string, nsqdAddr []string, nsqlookupdAdd
 			time.Sleep(time.Duration(sleepSeconds) * time.Second)
 			continue
 		}
-        /*
-		if debug {
-			t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelDebug)
-		} else {
-			t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
-		}
-        */
-        t.consumer.SetLogger(nil, 0)    //屏蔽系统日志
+		/*
+			if debug {
+				t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelDebug)
+			} else {
+				t.consumer.SetLogger(log.GetLogger(), nsq.LogLevelWarning)
+			}
+		*/
+		t.consumer.SetLogger(nil, 0) //屏蔽系统日志
 		//log.Infof("连接nsqlookupd(addr:%v)/nsqd(%v)成功", nsqlookupdAddr, nsqdAddr)
 		fmt.Printf("连接nsqlookupd(addr:%v)/nsqd(%v)成功\n", nsqlookupdAddr, nsqdAddr)
 		break
@@ -280,7 +280,7 @@ func (c *consumer) Init(configSection ini.Section, debug bool) (err error) {
 	if nsqlookupdArr, ok := configSection["nsqlookupd"]; ok {
 		Consumer.nsqLookupdAddr = strings.Split(nsqlookupdArr, ",")
 	}
-	if maxInFlight, _ := strconv.Atoi(configSection["maxInFlight"]); maxInFlight > 0 {
+	if maxInFlight, _ := strconv.Atoi(configSection["maxinflight"]); maxInFlight > 0 {
 		Consumer.maxInFlight = maxInFlight
 	}
 	if concurrent, _ := strconv.Atoi(configSection["concurrent"]); concurrent > 0 {
